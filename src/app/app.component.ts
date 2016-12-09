@@ -40,4 +40,12 @@ export class AppComponent implements OnInit {
     }
     this.appState = state;
   }
+
+  filterCategory(category){
+    console.log(category);
+    this._firebaseService.getBusinesses(category)
+        .subscribe(businesses => {
+          this.businesses = businesses;
+        });
+  }
 }
