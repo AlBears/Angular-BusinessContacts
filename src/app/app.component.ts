@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
   categories: Category[];
   appState: string;
   activeKey: string;
+  editedBusiness;
 
   constructor(private _firebaseService: FirebaseService) { }
 
@@ -56,5 +57,23 @@ export class AppComponent implements OnInit {
      
     this._firebaseService.addBusiness(newBusiness);
     this.changeState('default');
+  }
+
+  showEdit(business) {
+    this.changeState('edit', business.$key);
+    this.editedBusiness = business;
+  }
+
+  updateBusiness(){
+    let updBusiness = this.editedBusiness;
+    delete updBusiness.$key;
+    delete updBusiness.$exists;
+
+    this._firebaseService.updateBusiness(this.activeKey, updBusiness);
+    this.changeState('default');
+  }
+
+  deleteBusiness(key){
+    this._firebaseService.deleteBusiness(key);
   }
 }

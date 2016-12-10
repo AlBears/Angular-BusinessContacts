@@ -7,7 +7,7 @@ export interface Business {
     street_address?:string;
     city:string;
     state?:string;
-    zipcode?:string;
+    zipcode?:number;
     phone?:string;
     email?:string;
     created_at:string;
