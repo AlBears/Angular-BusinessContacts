@@ -29,27 +29,16 @@
 <div *ngIf="appState == 'add'" class="row">
   <div class="large-12 columns">
     <h3>Add business</h3>
-    <form (submit) = "addBusiness(
-      company.value,
-      category.value,
-      years_in_business.value,
-      description.value,
-      phone.value,
-      email.value,
-      street_address.value,
-      city.value,
-      state.value,
-      zipcode.value
-    )">
+    <form (ngSubmit)="addBusiness(f)" #f="ngForm">
     <div class="row">
       <div class="large-6 columns">
         <label>Company
-          <input type="text" placeholder="Company name" #company>
+          <input type="text" placeholder="Company name" ngModel name="company">
         </label>
       </div>
       <div class="large-6 columns">
         <label>Category
-          <select #category>
+          <select ngModel name="category">
             <option value="0">Select</option>
             <option *ngFor="let category of categories" value="{{category.name}}">{{category.name}}</option>
           </select>
@@ -60,12 +49,12 @@
       <div class="row">
           <div class="medium-6 columns">
             <label>Years In Business
-              <input type="text" placeholder="Years In Business" #years_in_business>
+              <input type="text" placeholder="Years In Business" ngModel name="years_in_business">
             </label>
           </div>
           <div class="medium-6 columns">
             <label>Description
-               <textarea #description></textarea>
+               <textarea ngModel name="description"></textarea>
             </label>
           </div>
         </div>
@@ -73,12 +62,12 @@
         <div class="row">
           <div class="medium-6 columns">
             <label>Phone
-              <input type="text" placeholder="Phone" #phone>
+              <input type="text" placeholder="Phone" ngModel name="phone">
             </label>
           </div>
           <div class="medium-6 columns">
             <label>Email
-              <input type="text" placeholder="Email" #email>
+              <input type="text" placeholder="Email" ngModel name="email">
             </label>
           </div>
         </div>
@@ -86,12 +75,12 @@
         <div class="row">
           <div class="medium-6 columns">
             <label>Street Address
-              <input type="text" placeholder="Street Address" #street_address>
+              <input type="text" placeholder="Street Address" ngModel name="street_address">
             </label>
           </div>
           <div class="medium-6 columns">
             <label>City
-              <input type="text" placeholder="City" #city>
+              <input type="text" placeholder="City" ngModel name="city">
             </label>
           </div>
         </div>
@@ -99,12 +88,12 @@
         <div class="row">
           <div class="medium-6 columns">
             <label>State
-              <input type="text" placeholder="State" #state>
+              <input type="text" placeholder="State" ngModel name="state">
             </label>
           </div>
           <div class="medium-6 columns">
             <label>Zipcode
-              <input type="text" placeholder="Zipcode" #zipcode>
+              <input type="text" placeholder="Zipcode" ngModel name="zipcode">
             </label>
           </div>
         </div>

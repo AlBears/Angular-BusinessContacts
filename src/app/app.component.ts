@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { NgForm } from '@angular/forms';
 
 import { FirebaseService } from './services/firebase.service';
 /**Interfaces */
@@ -32,7 +33,7 @@ export class AppComponent implements OnInit {
       });
   }
 
-  changeState(state, key) {
+  changeState(state, key=null) {
     console.log('Changing state to '+state);
     if(key){
       console.log('Changing key to '+key);
@@ -49,36 +50,11 @@ export class AppComponent implements OnInit {
         });
   }
 
-  addBusiness(
-    company:string,
-    category:string, 
-    years_in_business:number,
-    description:string,
-    phone:string,
-    email:string,
-    street_address:string,
-    city:string,
-    state:string,
-    zipcode:string
-  ){
-    var created_at = new Date().toString();
-
-    var newBusiness = {
-      company,
-      category,
-      years_in_business,
-      description,
-      phone,
-      email,
-      street_address,
-      city,
-      state,
-      zipcode,
-      created_at
-    }
-
-
+  addBusiness(form: NgForm){
+    let newBusiness = form.value;
+    newBusiness.created_at = new Date().toString();
+     
     this._firebaseService.addBusiness(newBusiness);
-    this.changeState('default', '');
+    this.changeState('default');
   }
 }
